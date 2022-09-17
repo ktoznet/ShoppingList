@@ -1,4 +1,4 @@
-package com.sumin.shoppinglist
+package com.sumin.shoppinglist.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
