@@ -5,25 +5,28 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.sumin.shoppinglist.R
+import com.sumin.shoppinglist.databinding.ActivityShopItemBinding
 import com.sumin.shoppinglist.domain.ShopItem
 import com.sumin.shoppinglist.presentation.fragment.ShopItemFragment
 
-class ShopItemActivity : AppCompatActivity() {
-
+class ShopItemActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedListener {
+    private lateinit var binding: ActivityShopItemBinding
     private var screenMode = MODE_UNKNOWN
     private var shopItemId = ShopItem.UNDEFINED_ID
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_shop_item)
+        binding= ActivityShopItemBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         parseIntent()
-        if(savedInstanceState != null){
+        if (savedInstanceState == null) {
             launchRightMode()
         }
-
-
     }
 
+    override fun onEditingFinished() {
+        finish()
+    }
 
     private fun launchRightMode() {
         val fragment = when (screenMode) {
@@ -35,8 +38,6 @@ class ShopItemActivity : AppCompatActivity() {
             .replace(R.id.shop_item_container, fragment)
             .commit()
     }
-
-
 
     private fun parseIntent() {
         if (!intent.hasExtra(EXTRA_SCREEN_MODE)) {
@@ -54,7 +55,6 @@ class ShopItemActivity : AppCompatActivity() {
             shopItemId = intent.getIntExtra(EXTRA_SHOP_ITEM_ID, ShopItem.UNDEFINED_ID)
         }
     }
-
 
     companion object {
 
