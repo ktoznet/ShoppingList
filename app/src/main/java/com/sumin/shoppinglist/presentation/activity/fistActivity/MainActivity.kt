@@ -23,12 +23,10 @@ class MainActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedList
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
     private lateinit var shopListAdapter: ShopListAdapter
-    private var shopItemContainer: FragmentContainerView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        shopItemContainer = binding.shopItemContainer
         setupRecyclerView()
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.shopList.observe(this) {
@@ -36,7 +34,7 @@ class MainActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedList
         }
         binding.buttonAddShopItem.setOnClickListener {
             if (isOnePaneMode()) {
-                val intent = ShopItemActivity.newIntentAddItem(this)
+                val intent = newIntentAddItem(this)
                 startActivity(intent)
             } else {
                 launchFragment(ShopItemFragment.newInstanceAddItem())
@@ -50,7 +48,7 @@ class MainActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedList
     }
 
     private fun isOnePaneMode(): Boolean {
-        return shopItemContainer == null
+        return binding.shopItemContainer == null
     }
 
     private fun launchFragment(fragment: Fragment) {
@@ -105,7 +103,7 @@ class MainActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedList
     private fun setupClickListener() {
         shopListAdapter.onShopItemClickListener = {
             if (isOnePaneMode()) {
-                val intent = ShopItemActivity.newIntentEditItem(this, it.id)
+                val intent = newIntentEditItem(this, it.id)
                 startActivity(intent)
             } else {
                 launchFragment(ShopItemFragment.newInstanceEditItem(it.id))
