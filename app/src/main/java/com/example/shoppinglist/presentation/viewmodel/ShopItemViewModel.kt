@@ -3,11 +3,11 @@ package com.example.shoppinglist.presentation.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.shoppinglist.data.ShopListRepositoryImpl
-import com.example.shoppinglist.domain.AddShopItemUseCase
-import com.example.shoppinglist.domain.EditShopItemUseCase
-import com.example.shoppinglist.domain.GetShopItemUseCase
-import com.example.shoppinglist.domain.ShopItem
+import com.example.shoppinglist.data.repositoryimpl.ShopListRepositoryImpl
+import com.example.shoppinglist.domain.usecase.AddShopItemUseCase
+import com.example.shoppinglist.domain.usecase.EditShopItemUseCase
+import com.example.shoppinglist.domain.usecase.GetShopItemUseCase
+import com.example.shoppinglist.domain.entity.ShopItem
 
 class ShopItemViewModel : ViewModel() {
 
