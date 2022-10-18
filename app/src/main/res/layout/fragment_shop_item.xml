@@ -4,7 +4,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.sumin.shoppinglist.presentation.viewmodel.ShopItemViewModel" />
+            type="com.example.shoppinglist.presentation.viewmodel.ShopItemViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
